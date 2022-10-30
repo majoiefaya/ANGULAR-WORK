@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SidemenuComponent } from './sidemenu.component';
+import { PrefooterComponent } from './prefooter.component';
 
-describe('SidemenuComponent', () => {
-  let component: SidemenuComponent;
-  let fixture: ComponentFixture<SidemenuComponent>;
+describe('PrefooterComponent', () => {
+  let component: PrefooterComponent;
+  let fixture: ComponentFixture<PrefooterComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SidemenuComponent ]
+      declarations: [ PrefooterComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(SidemenuComponent);
+    fixture = TestBed.createComponent(PrefooterComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
