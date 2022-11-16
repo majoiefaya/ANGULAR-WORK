@@ -1,0 +1,67 @@
+<div class="container mt-5">
+
+    <div *ngIf="affichage==true">
+        <h3 class="mb-5" style="background-color:red;color:white;text-align:center;padding:10px;text-transform: uppercase;">Liste Des etudiants</h3>
+
+        <button type="button" class="btn btn-primary" (click)="afficherFormulaire()">Ajouter</button>
+        
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Prenom</th>
+                <th scope="col">Filiere</th>
+                <th scope="col">Status</th>
+                <th scope="col">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let etudiant of etudiants;let n=index">
+                <th scope="row">{{n}}</th>
+                <td>{{etudiant.nom}}</td>
+                <td>{{etudiant.prenom}}</td>
+                <td>{{etudiant.Filiere}}</td>
+                <td>
+                    <span class="text-success" *ngIf="etudiant.Status==true">Actif</span>
+                    <span class="text-danger" *ngIf="etudiant.Status==false">Inactif</span>      
+                </td>
+                <td>
+                    <button type="button" class="btn btn-danger" *ngIf="etudiant.Status==false" (click)="Activer(etudiant)">Activer</button>
+                    <button type="button" class="btn btn-success" *ngIf="etudiant.Status==true" (click)="Desactiver(etudiant)">Desactiver</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div *ngIf="affichage==false">
+        <h3 class="mb-5" style="background-color:red;color:white;text-align:center;padding:10px;text-transform: uppercase;">Liste Des etudiants</h3>
+
+        <button type="button" class="btn btn-primary" (click)="afficherEtudiants()">Voir Liste Etudiant</button>
+        <form (ngSubmit)="EnregistrerEtudiant(registerForm)" #registerForm="ngForm">
+        <div class="form-group">
+            <label for="exampleInputEmail1">Nom</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder=" Entrez leNom" [(ngModel)]="Etudiant.nom" name="nom" >
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Prenom</label>
+            <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Entrez le prenom" [(ngModel)]="Etudiant.prenom" name="prenom">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Filiere</label>
+            <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Entrez la filiere" [(ngModel)]="Etudiant.Filiere" name="flierer">
+        </div>
+        <!-- <div class="form-group">
+            <label for="exampleInputPassword1">Statut</label>
+            <select class="form-select" aria-label="Default select example" [(ngModel)]="Etudiant.Status"name="Status">
+                <option value="true">Activer</option>
+                <option value="false">Desactiver</option>
+            </select>
+        </div> -->
+        <button type="submit" class="btn btn-success">Reussie</button>
+        </form>
+        
+    </div>
+
+</div>
