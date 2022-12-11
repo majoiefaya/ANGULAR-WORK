@@ -1,0 +1,81 @@
+<div class="container mt-5">
+
+    <div *ngIf="affichage==true">
+        <h3 class="mb-5" style="border-radius:10px;background-color:rgb(30, 28, 28);color:white;text-align:center;padding:10px;text-transform: uppercase;font-family:Quicksand">Liste Des Inscriptions</h3>
+
+       <div>
+            <button type="button" class="btn btn-primary" (click)="afficherFormulaire()">Ajouter</button>
+        
+            <div class="form-check">
+                <input class="form-check-input" (click)="ActivateAll()" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                <label class="form-check-label" for="flexRadioDefault1">
+                Activé
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" (click)="DesActivateAll()" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                <label class="form-check-label" for="flexRadioDefault2">
+                Desactivé
+                </label>
+            </div>
+       </div> 
+            
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Etudiant</th>
+                <th scope="col">DateInscription</th>
+                <th scope="col">AnneAcademique</th>
+                <th scope="col">Status</th>
+                <th scope="col">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let inscription of inscriptions;let n=index">
+                <th scope="row">{{n}}</th>
+                <td>{{inscription.Etudiant}}</td>
+                <td>{{inscription.DateInscription}}</td>
+                <td>{{inscription.AnneAc}}</td>
+                <td>
+                    <span class="text-success" *ngIf="inscription.Status==true">Actif</span>
+                    <span class="text-danger" *ngIf="inscription.Status==false">Inactif</span>      
+                </td>
+                <td>
+                    <button type="button" class="btn btn-danger" *ngIf="inscription.Status==false" (click)="ActivateAction(inscription)">Activer</button>
+                    <button type="button" class="btn btn-success" *ngIf="inscription.Status==true" (click)="DesactivateAction(inscription)">Desactiver</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div *ngIf="affichage==false">
+        <h3 class="mb-5" style="border-radius:10px;background-color:rgb(30, 28, 28);color:white;text-align:center;padding:10px;text-transform: uppercase;font-family:Quicksand">Liste Des inscriptions</h3>
+
+        <button type="button" class="btn btn-primary" (click)="afficherInscriptions()">Voir Liste inscription</button>
+        <form (ngSubmit)="EnregistrerInscription(registerForm)" #registerForm="ngForm">
+        <div class="form-group">
+            <label for="exampleInputEmail1">Etudiant</label>
+            <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" placeholder="Entrez la filiere" [(ngModel)]="inscription.Etudiant" name="Filiere">
+                <option selected>Selectionnez l'etudiant a inscrire</option>
+                <option value="{{etudiant.nom}}" *ngFor="let etudiant of etudiants;let n=index">{{etudiant.nom}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">DateInscription</label>
+            <input type="date" class="form-control" id="exampleInputPassword1" placeholder="Entrez le prenom" [(ngModel)]="inscription.DateInscription" name="prenom">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Anne Academique</label>
+            <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" placeholder="Entrez la filiere" [(ngModel)]="inscription.AnneAc" name="Filiere">
+                <option selected>chosissez une AnneAcademique</option>
+                <option value="{{anneAcad.libelle}}" *ngFor="let anneAcad of anneAcads;let n=index">{{anneAcad.libelle}}</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-success">Reussie</button>
+        </form>
+        
+    </div>
+
+</div>

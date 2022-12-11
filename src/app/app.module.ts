@@ -3,40 +3,45 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MenuComponent } from './menu/menu.component';
-import { HeaderComponent } from './header/header.component';
-import { ServicesComponent } from './services/services.component';
-import { AboutUsComponent } from './about-us/about-us.component';
-import { FeaturesComponent } from './features/features.component';
-import { TestimonialsComponent } from './testimonials/testimonials.component';
-import { SearchComponent } from './search/search.component';
-import { ContactComponent } from './contact/contact.component';
+import { EtudiantService } from './Services/etudiant.service';
+import { AnneAcadService } from './Services/AnneAc.service'; 
+import { FiliereService } from './Services/filiere.service';
+import { InscriptionService } from './Services/Inscription.service';
+import { AppareilComponent } from './appareil/appareil.component';
+import { FormsModule } from '@angular/forms';
+import { NavbarComponent } from './navbar/navbar.component';
+import { BodyComponent } from './body/body.component';
 import { FooterComponent } from './footer/footer.component';
-import { WhatWeDoComponent } from './what-we-do/what-we-do.component';
-import { TestimonialFooterComponent } from './testimonial-footer/testimonial-footer.component';
-import { PrefooterComponent } from './prefooter/prefooter.component';
+import { AcceuilComponent } from './acceuil/acceuil.component';
+import { InscriptionComponent } from './inscription/inscription.component';
+import { AnneAcComponent } from './anne-ac/anne-ac.component';
+import { ContenuComponent } from './contenu/contenu.component';
+import { FiliereComponent } from './filiere/filiere.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MenuComponent,
-    HeaderComponent,
-    ServicesComponent,
-    AboutUsComponent,
-    FeaturesComponent,
-    TestimonialsComponent,
-    SearchComponent,
-    ContactComponent,
+    AppareilComponent,
+    NavbarComponent,
+    BodyComponent,
     FooterComponent,
-    WhatWeDoComponent,
-    TestimonialFooterComponent,
-    PrefooterComponent
+    AcceuilComponent,
+    InscriptionComponent,
+    AnneAcComponent,
+    ContenuComponent,
+    FiliereComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
-  providers: [],
+  providers: [
+    EtudiantService,
+    FiliereService,
+    AnneAcadService,
+    InscriptionService 
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

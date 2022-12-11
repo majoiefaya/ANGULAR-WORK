@@ -1,0 +1,70 @@
+<div class="container mt-5">
+
+    <div *ngIf="affichage==true">
+        <h3 class="mb-5" style="border-radius:10px;background-color:rgb(30, 28, 28);color:white;text-align:center;padding:10px;text-transform: uppercase;font-family:Quicksand">Liste Des Années Academiques</h3>
+
+       <div>
+            <button type="button" class="btn btn-primary" (click)="afficherFormulaire()">Ajouter</button>
+        
+            <div class="form-check">
+                <input class="form-check-input" (click)="ActivateAll()" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                <label class="form-check-label" for="flexRadioDefault1">
+                Activé
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" (click)="DesActivateAll()" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                <label class="form-check-label" for="flexRadioDefault2">
+                Desactivé
+                </label>
+            </div>
+       </div> 
+            
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Libelle</th>
+                <th scope="col">Status</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let AnneAc of AnneAcs;let n=index">
+                <th scope="row">{{n}}</th>
+                <td>{{AnneAc.libelle}}</td>
+                <td>{{AnneAc.Status}}</td>
+                <td>
+                    <span class="text-success" *ngIf="AnneAc.Status==true">Actif</span>
+                    <span class="text-danger" *ngIf="AnneAc.Status==false">Inactif</span>      
+                </td>
+                <td>
+                    <button type="button" class="btn btn-danger" *ngIf="AnneAc.Status==false" (click)="ActivateAction(AnneAc)">Activer</button>
+                    <button type="button" class="btn btn-success" *ngIf="AnneAc.Status==true" (click)="DesactivateAction(AnneAc)">Desactiver</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div *ngIf="affichage==false">
+        <h3 class="mb-5" style="border-radius:10px;background-color:rgb(30, 28, 28);color:white;text-align:center;padding:10px;text-transform: uppercase;font-family:Quicksand">Liste Des Années Academiques</h3>
+
+        <button type="button" class="btn btn-primary" (click)="afficherAnneAcad()">Voir Liste AnneAcs</button>
+        <form (ngSubmit)=" EnregistrerAnneAcad(registerForm)" #registerForm="ngForm">
+        <div class="form-group">
+            <label for="exampleInputPassword1">Libelle</label>
+            <input type="text" class="form-control" placeholder="Entrez le Libelle" [(ngModel)]="AnneAc.libelle" name="libelle">
+        </div>
+        <!-- <div class="form-group">
+            <label for="exampleInputPassword1">Statut</label>
+            <select class="form-select" aria-label="Default select example" [(ngModel)]="AnneAc.Status"name="Status">
+                <option value="true">Activer</option>
+                <option value="false">Desactiver</option>
+            </select>
+        </div> -->
+        <button type="submit" class="btn btn-success">Reussie</button>
+        </form>
+        
+    </div>
+
+</div>
